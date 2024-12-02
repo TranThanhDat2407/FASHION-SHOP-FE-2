@@ -1,0 +1,40 @@
+#wrapper {
+  display: flex;
+  align-items: stretch;
+  min-height: 100vh; /* Đảm bảo sidebar có chiều cao đầy đủ */
+}
+
+#sidebar-wrapper {
+  min-width: 250px; /* Đặt chiều rộng cho sidebar */
+}
+
+.sidebar-heading {
+  padding: 20px;
+  font-size: 1.25rem;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e4e4e4;
+}
+
+.list-group-item {
+  border: none; /* Không có đường viền cho các mục */
+}
+
+.list-group-item:hover {
+  background-color: #e9ecef; /* Màu nền khi di chuột */
+}
+
+.list-group-item.active {
+  background-color: #007bff; /* Màu nền cho mục đang hoạt động */
+  color: white; /* Đổi màu chữ */
+}
+#wrapper.toggled #sidebar-wrapper {
+  margin-left: -250px; /* Đẩy sidebar ra ngoài khi toggle */
+}
+
+#wrapper {
+  display: flex;
+  align-items: stretch;
+  min-height: 100vh; /* Đảm bảo sidebar có chiều cao đầy đủ */
+}
+
+/* Các kiểu khác tại đây... */

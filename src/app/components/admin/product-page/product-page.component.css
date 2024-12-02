@@ -1,0 +1,78 @@
+/*!* Cập nhật bảng *!*/
+/*.table th, .table td {*/
+/*  padding: 10px;*/
+/*  text-align: center; !* Căn giữa nội dung trong các ô *!*/
+/*  vertical-align: middle; !* Căn giữa nội dung theo chiều dọc *!*/
+/*  word-wrap: break-word; !* Đảm bảo nội dung không bị tràn ra ngoài *!*/
+/*}*/
+
+/*!* Điều chỉnh chiều rộng của các cột *!*/
+/*.table th, .table td {*/
+/*  width: 13%; !* Giảm chiều rộng cột để các cột ngang hàng *!*/
+/*}*/
+
+/* Cột Color */
+.table td img {
+  width: 20px; /* Giảm kích thước ảnh trong cột Color */
+  height: 20px;
+  object-fit: cover;
+  border-radius: 50%; /* Nếu bạn muốn ảnh tròn */
+}
+.table td div {
+  padding-bottom: 20px;
+}
+
+.table td:nth-child(7) div {
+  padding-bottom: 13px; /* Loại trừ cột Action, không có padding-bottom */
+}
+
+/*!* Cập nhật lại chiều rộng của cột Color *!*/
+/*.table td:nth-child(5) { !* Cột Color *!*/
+/*  width: 8%; !* Giảm chiều rộng cột Color *!*/
+/*}*/
+/*table {*/
+/*  width: 100%;*/
+/*  border-collapse: collapse;*/
+/*}*/
+
+/*th, td {*/
+/*  text-align: center;*/
+/*  padding: 10px;*/
+/*}*/
+
+/*th {*/
+/*  background-color: #f8f9fa;*/
+/*}*/
+
+/*td img {*/
+/*  max-width: 30px;*/
+/*  max-height: 30px;*/
+/*}*/
+
+/*td button {*/
+/*  padding: 5px 10px;*/
+/*  margin-right: 5px; !* Cách nhau giữa các nút *!*/
+/*}*/
+
+/*tr:nth-child(even) {*/
+/*  background-color: #f2f2f2;*/
+/*}*/
+
+/*tr:hover {*/
+/*  background-color: #e9ecef;*/
+/*}*/
+
+/*.btn {*/
+/*  font-size: 14px;*/
+/*}*/
+
+/*.btn-sm {*/
+/*  font-size: 12px; !* Làm nhỏ các nút *!*/
+/*}*/
+.alert {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  width: auto;
+  z-index: 9999;
+}

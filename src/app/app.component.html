@@ -1,0 +1,14 @@
+<div>
+  <app-header *ngIf="!isAdminPage"></app-header>
+</div>
+
+<div style="height: 100px">
+</div>
+<div>
+  <router-outlet></router-outlet>
+</div>
+<div>
+  <app-footer *ngIf="!isAdminPage"></app-footer>
+</div>
+
+
