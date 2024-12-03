@@ -15,11 +15,11 @@ import {TranslatePipe} from '@ngx-translate/core';
 export class HomeComponent implements OnInit{
   ngOnInit(): void {
     // Reload trang trước khi vào trang Home
-    if (!sessionStorage.getItem('hasReloaded')) {
-      // Đánh dấu là đã reload
-      sessionStorage.setItem('hasReloaded', 'true');
-      // Reload trang
-      window.location.reload();
-    }
+    // if (!sessionStorage.getItem('hasReloaded')) {
+    //   // Đánh dấu là đã reload
+    //   sessionStorage.setItem('hasReloaded', 'true');
+    //   // Reload trang
+    //   window.location.reload();
+    // }
   }
 }

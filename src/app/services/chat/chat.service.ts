@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root', // Standalone Service
 })
 export class ChatService {
-  private apiUrl = 'http://localhost:8080/chat-ai'; // Thay bằng IP và port của Spring Boot
+  private apiUrl = 'http://localhost:8080/api/v1/chat-ai'; // Thay bằng IP và port của Spring Boot
 
   constructor(private http: HttpClient) {}
 

@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   const generateResponse = (chatElement, userMessage) => {
-    const API_URL = `http://localhost:8080/chat-ai`;
+    const API_URL = `http://localhost:8080/api/v1/chat-ai`;
     const messageElement = chatElement.querySelector("div");
 
     // Tạo URL với tham số message
