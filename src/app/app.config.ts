@@ -34,13 +34,5 @@ export const appConfig: ApplicationConfig = {
       },
     }),
     tokenInterceptorProvider,
-    provideTranslateService({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: (http: HttpClient) =>
-          new TranslateHttpLoader(http, './assets/i18n/', '.json'),
-        deps: [HttpClient],
-      },
-    }),
   ]
 };

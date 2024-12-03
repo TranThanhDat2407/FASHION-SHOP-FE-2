@@ -1,6 +1,5 @@
-
 <div *ngIf="showSuccessMessage" class="alert alert-success" role="alert">
-  {{message}}
+  {{ message }}
 </div>
 <h1 class="mt-4">Product List</h1>
 
@@ -9,7 +8,8 @@
     <a id="add-product-button" routerLink="/admin/addProduct" class="btn btn-success w-100">Add Product</a>
   </div>
   <div class="col-md-6 offset-md-3">
-    <input type="text" class="form-control" id="searchInput" placeholder="Search Products" (keyup)="searchProducts($event)">
+    <input type="text" class="form-control" id="searchInput" placeholder="Search Products"
+           (keyup)="searchProducts($event)">
   </div>
 </div>
 
@@ -29,7 +29,13 @@
   <tbody>
   <tr *ngFor="let product of listProduct; let i = index">
     <td>{{ product.name }}</td>
-    <td><img src="https://example.com/image1.jpg" alt="Product Image" width="50" height="50"></td>
+    <td>
+      <div class="img_product" *ngFor="let img of product.productImages">
+
+        <img [src]="'../../../../assets/product_img/' + img.imageUrl " alt="Product Image"
+             style="width: 50px; height: auto; margin: 5px; object-fit: cover;">
+        </div>
+    </td>
 
     <!-- Price Column -->
     <td>
@@ -48,8 +54,8 @@
     <!-- Color Column -->
     <td>
       <div *ngFor="let sku of product.skus">
-        <img  [src]="'assets/color/' + sku.color.value_img" >
-<!--        <span>{{ sku.color?.name }}</span>-->
+        <img [src]="'../../../../assets/color_img/' + sku.color.value_img">
+        <!--        <span>{{ sku.color?.name }}</span>-->
       </div>
     </td>
 
@@ -63,8 +69,10 @@
     <!-- Action Column -->
     <td>
       <div *ngFor="let sku of product.skus">
-        <button class="btn btn-primary    btn-sm" (click)="viewDetails(product.id, sku.id)">Edit</button>
-        <button    class="btn btn-danger btn-sm delete" [attr.data-sku-id]="sku.id" (click)="deleteSku(product.id, sku.id)">Delete</button>
+        <button class="btn btn-primary btn-sm" (click)="viewDetails(product.id, sku.id)">Edit</button>
+        <button class="btn btn-danger btn-sm delete" [attr.data-sku-id]="sku.id"
+                (click)="deleteSku(product.id, sku.id)">Delete
+        </button>
       </div>
     </td>
   </tr>
