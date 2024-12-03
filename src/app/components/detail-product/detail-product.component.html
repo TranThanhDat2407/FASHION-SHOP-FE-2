@@ -169,10 +169,16 @@
           <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
 <!--          {{skuId}} {{activeQty}}-->
 
-            <div class="detail-product-btnAddtoCart" (click)="addToCart(userId,skuId,activeQty)" >
-              <div class="btnAddtoCart slide_leftbtnAddtoCart">THÊM VÀO GIỎ HÀNG</div>
-
+            <div class="detail-product-btnAddtoCart"
+                 (click)="addToCart(userId, skuId, activeQty)"
+                 [class.disabled]="qtyInStock === 0"
+                 [attr.disabled]="qtyInStock === 0 ? true : null">
+              <div class="btnAddtoCart slide_leftbtnAddtoCart">
+                THÊM VÀO GIỎ HÀNG
+              </div>
             </div>
+
+
           </div>
           <div class="col-sm-5 col-md-5 col-lg-5 col-xl-5" style="margin-top: 10px;">
             <div class="detail-product-btnWishlist">
@@ -195,5 +201,84 @@
 
 
     </div>
+  </div>
+</div>
+<div class="container describe-form">
+  <span>MÔ TẢ CHI TIẾT SẢN PHẨM </span>
+  <ul>
+    <li *ngIf="descriptionList.length === 0 "  >
+     Khog co mo ta
+    </li>
+    <li *ngFor="let item of descriptionList"  >
+      {{ item }}
+    </li>
+  </ul>
+
+</div>
+
+<div class="container">
+  <div class="container mt-5">
+
+    <div class="row  d-flex justify-content-center">
+
+      <div class="col-md-8">
+
+        <div class="headings d-flex justify-content-between align-items-center mb-3">
+          <h5>Tất Cả Bình Luận ({{  0 }})</h5>
+
+
+          <div class="buttons">
+
+            <span class="badge bg-white d-flex flex-row align-items-center">
+              <span class="text-primary">Comments "ON"</span>
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+
+              </div>
+            </span>
+
+          </div>
+
+        </div>
+
+
+
+        <div class="card p-3" *ngFor="let item of listReviews">
+          <div class="d-flex justify-content-between align-items-center">
+            <div class="user d-flex flex-row align-items-center">
+              <img src="https://i.imgur.com/hczKIze.jpg" width="30" class="user-img rounded-circle mr-2">
+              <span><small class="font-weight-bold text-primary" style="margin-left: 6px;"> {{item.user.name}}</small></span>
+            </div>
+            <p><small>{{ item.create_at | date:'dd/MM/yyyy HH:mm' }}</small></p>
+          </div>
+          <div class="action d-flex justify-content-between mt-2 align-items-center">
+            <div class="reply px-4">
+              <small
+                class="font-weight-bold">{{item.comment}}</small>
+            </div>
+            <div class="icons align-items-center">
+              <span style="margin-right: 1px; font-weight: 500;">{{item.ratingValue}}</span> <span><i class="fa fa-star text-warning"></i></span>
+              <!-- <i class="fa fa-check-circle-o check-icon"></i> -->
+            </div>
+          </div>
+        </div>
+
+
+        <div class="pagination" style="padding-top: 50px; padding-bottom: 60px;text-align: center;">
+          <button (click)="prevPage()" [disabled]="currentPage === 0" style="width: 160px;">Previous</button>
+          <div class="pagination" style="padding-right: 5px;padding-left: 5px;">
+            <button *ngFor="let pageNum of totalPagesArray" (click)="changePage(pageNum - 1)" style="margin-left: 5px;">
+              {{ pageNum }}
+            </button>
+          </div>
+          <button (click)="nextPage()" [disabled]="currentPage === totalPages - 1" style="width: 120px;">Next</button><br>
+          <!-- <span style=" font-family: 'Kanit', sans-serif;">Page {{ currentPage + 1 }} of {{ totalPages }}</span> -->
+        </div>
+
+
+      </div>
+
+    </div>
+
   </div>
 </div>

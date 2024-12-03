@@ -14,12 +14,14 @@ import { CartService } from '../../services/cart/cart.service';
 import {Subscription} from 'rxjs';
 import {CartItem} from '../../model/cart/CartItem';
 import {CartResponse} from '../../model/cart/CartResponse';
+import {TranslatePipe} from '@ngx-translate/core';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [RouterLink, NgForOf, CommonModule],
+  imports: [RouterLink, NgForOf, CommonModule, TranslatePipe],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
@@ -43,13 +45,17 @@ export class HeaderComponent implements OnInit {
     private userService: UserService,
     private tokenService: TokenService,
     private router: Router,
+    private translate: TranslateService,
     private cartService: CartService, @Inject(PLATFORM_ID) private platformId: Object,
   ) {
   }
 
+
+
   ngOnInit(): void {
     this.userId = this.tokenService.getUserId();
 
+    this.translate.setDefaultLang('vi');
     this.tokenService.checkLoginStatus();  // Check login status and sync
     this.tokenService.isLoggedIn$.subscribe((status) => {
       this.isLoggedIn = status; // Update login status
@@ -60,6 +66,7 @@ export class HeaderComponent implements OnInit {
         this.loadGuestCart(); // Load guest cart from localStorage if not logged in
       }
     });
+
 
     this.cartSubscription = this.cartService.cart$.subscribe((cart) => {
       this.totalItems = cart.reduce((sum, item) => sum + item.quantity, 0); // Calculate total items in cart
@@ -79,6 +86,10 @@ export class HeaderComponent implements OnInit {
     this.userResponse = this.userService.getUserResponseFromLocalStorage();
   }
 
+
+  changeLanguage(lang: string): void {
+    this.translate.use(lang);
+  }
   loadUserCart(userId: number): void {
     this.cartService.getDataCart(userId).subscribe((data: CartResponse) => {
       this.cartService.updateCartUser(data.cartItem); // Update cart with fetched items

@@ -14,8 +14,7 @@
 
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                     <div class="textTitle">
-                        <h2> <i class="fa-solid fa-cart-shopping" style="font-weight: bolder;font-size: 21px;"> </i> GIỎ
-                            HÀNG </h2>
+                        <h2> <i class="fa-solid fa-cart-shopping" style="font-weight: bolder;font-size: 21px;"> </i> {{ 'CART' | translate }} </h2>
                     </div>
 
                 </div>
@@ -71,7 +70,7 @@
                                             style="margin-top: -7px;">
                                             <div class="row">
                                                 <div class="col-4 removeCart" style="padding-top: 15px;">
-                                                    <a href=""> Remove</a>
+                                                    <a (click)="removeItem(listCartItem.id)"> Remove</a>
                                                 </div>
                                                 <div class="col-4 priceInCart-product-cart"
                                                     style="padding-top: 15px;padding-left: 20px; ">
@@ -121,7 +120,7 @@
                             <div class="priceBill" style="font-weight: 700">
                                 <div class="row">
                                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 ">
-                                        <span style="padding-right: 45px;">TỔNG TIỀN </span> <span
+                                        <span style="padding-right: 45px;">{{ 'TOTAL_PRICE' | translate }}</span> <span
                                             style="font-size: 22px;  margin-left: 40px; ">{{totalPrice | currency: 'VND' : ''}} </span> <span
                                             style="font-size: 10px;color: #2a2a2a; ">Vnđ
                                         </span>
@@ -135,7 +134,7 @@
 <!--                                    </div>-->
                                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12"
                                         style="margin-top: 20px;">
-                                        <span>TỔNG SỐ LƯỢNG :</span>
+                                        <span>{{ 'TOTAL_QUANTITY' | translate }} :</span>
                                         <span style="font-size: 22px;  margin-left: 34px; margin-right: 5px;">{{totalQty}} </span>
                                         <span style="font-size: 18px;color: #82bad1; ">Sản phẩm
                                         </span>
@@ -145,8 +144,8 @@
                                         <hr>
                                     </div>
                                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                                        <span>TỔNG HÓA ĐƠN :</span>
-                                        <span style="font-size: 26px;  margin-left: 30px;color: #00b7ff; ">{{totalPrice + 20000 | currency : 'VND' :''}}
+                                        <span>{{ 'TOTAL_BILL' | translate }}:</span>
+                                        <span style="font-size: 26px;  margin-left: 30px;color: #00b7ff; ">{{totalPrice | currency : 'VND' :''}}
                                         </span> <span style="font-size: 10px;color: #2a2a2a; ">Vnđ
                                         </span>
                                     </div>
@@ -162,7 +161,7 @@
                                     <div class="col-12">
                                       <div class="btnBuyCart slide_leftbtnBuyCart"
                                            [routerLink]="['/payments']" [queryParams]="{ cartItem: JSON.stringify(listOrderDetail) }"
-                                      >  MUA NGAY
+                                      >  {{ 'BUY_NOW' | translate }}
                                       </div>
 
                                     </div>
@@ -179,7 +178,7 @@
                                     </div>
                                     <p></p>
                                     <div class="col-12">
-                                        <div class="btnBuyToContinue slide_leftbtnBuyToContinue">TIẾP TỤC MUA SẮM</div>
+                                        <div class="btnBuyToContinue slide_leftbtnBuyToContinue">{{ 'CONTINUE_SHOPPING' | translate }}</div>
                                     </div>
                                 </div>
 

@@ -1,11 +1,21 @@
+/* Đảm bảo wrapper và các phần tử con có layout phù hợp */
 #wrapper {
   display: flex;
-  align-items: stretch;
-  min-height: 100vh; /* Đảm bảo sidebar có chiều cao đầy đủ */
+  min-height: 100vh; /* Chiếm toàn bộ chiều cao màn hình */
+  width: 100%; /* Đảm bảo chiếm toàn bộ chiều rộng màn hình */
+  overflow-x: hidden; /* Ngăn việc tràn ra ngoài màn hình */
 }
 
 #sidebar-wrapper {
-  min-width: 250px; /* Đặt chiều rộng cho sidebar */
+  width: 250px; /* Đặt chiều rộng cho sidebar */
+  background-color: #f8f9fa;
+  transition: margin-left 0.3s ease;
+}
+
+#main-content {
+  flex-grow: 1; /* Chiếm phần còn lại của màn hình */
+  padding: 20px;
+  overflow-y: auto; /* Cho phép cuộn dọc khi cần */
 }
 
 .sidebar-heading {
@@ -16,25 +26,24 @@
 }
 
 .list-group-item {
-  border: none; /* Không có đường viền cho các mục */
+  border: none;
 }
 
 .list-group-item:hover {
-  background-color: #e9ecef; /* Màu nền khi di chuột */
+  background-color: #e9ecef;
 }
 
 .list-group-item.active {
-  background-color: #007bff; /* Màu nền cho mục đang hoạt động */
-  color: white; /* Đổi màu chữ */
+  background-color: #007bff;
+  color: white;
 }
+
+/* Khi sidebar bị ẩn đi */
 #wrapper.toggled #sidebar-wrapper {
-  margin-left: -250px; /* Đẩy sidebar ra ngoài khi toggle */
+  margin-left: -250px; /* Ẩn sidebar */
 }
 
-#wrapper {
-  display: flex;
-  align-items: stretch;
-  min-height: 100vh; /* Đảm bảo sidebar có chiều cao đầy đủ */
+/* Đảm bảo main content không bị chèn khi sidebar mở */
+#wrapper.toggled #main-content {
+  margin-left: 0; /* Điều chỉnh margin để không bị chèn */
 }
-
-/* Các kiểu khác tại đây... */
