@@ -14,6 +14,7 @@ import { CartService } from '../../services/cart/cart.service';
 import {Subscription} from 'rxjs';
 import {CartItem} from '../../model/cart/CartItem';
 import {CartResponse} from '../../model/cart/CartResponse';
+import {TranslateService} from '@ngx-translate/core';
 
 
 @Component({
@@ -44,7 +45,9 @@ export class HeaderComponent implements OnInit {
     private tokenService: TokenService,
     private router: Router,
     private cartService: CartService, @Inject(PLATFORM_ID) private platformId: Object,
+    private translate: TranslateService
   ) {
+    this.translate.setDefaultLang('vi');
   }
 
   ngOnInit(): void {
@@ -177,6 +180,10 @@ export class HeaderComponent implements OnInit {
 
   ngOnDestroy(): void {
     this.cartSubscription.unsubscribe(); // Unsubscribe to avoid memory leaks
+  }
+
+  changeLanguage(lang: string): void {
+    this.translate.use(lang);
   }
 }
 

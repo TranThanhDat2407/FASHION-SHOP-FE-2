@@ -17,6 +17,7 @@ import {AddressListComponent} from './components/address-list/address-list.compo
 import {EditProfileComponent} from './components/edit-profile/edit-profile.component';
 import {OrderDetailsComponent} from './components/order-details/order-details.component';
 
+
 export const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'home', component: HomeComponent},

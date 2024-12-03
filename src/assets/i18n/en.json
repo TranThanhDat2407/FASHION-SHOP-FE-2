@@ -1,0 +1,16 @@
+{
+  "LOGIN": {
+    "TITLE": "LOGIN",
+    "EMAIL_LABEL": "EMAIL ADDRESS",
+    "PASSWORD_LABEL": "PASSWORD",
+    "LOGIN_BUTTON": "LOGIN",
+    "FORGOT_PASSWORD": "Forgot password?",
+    "SHOW_PASSWORD": "Show password",
+    "LOGIN_WITH_GOOGLE": "Login with google"
+  },
+  "SIGNUP": {
+    "TITLE": "CREATE AN ACCOUNT",
+    "DESCRIPTION": "Create an account now! Access exclusive services.",
+    "CREATE_ACCOUNT_BUTTON": "REGISTER A NEW ACCOUNT"
+  }
+}

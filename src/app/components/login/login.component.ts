@@ -9,6 +9,7 @@ import {TokenService} from '../../services/token/token.service';
 import {RoleService} from '../../services/role/role.service';
 import {UserResponse} from '../../responses/user/user.response';
 import {Role} from '../../model/role';
+import {TranslatePipe} from '@ngx-translate/core';
 
 
 @Component({
@@ -17,7 +18,8 @@ import {Role} from '../../model/role';
   imports: [
     RouterLink,
     CommonModule,
-    FormsModule
+    FormsModule,
+    TranslatePipe
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
