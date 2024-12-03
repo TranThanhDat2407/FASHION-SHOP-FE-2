@@ -18,6 +18,9 @@ import { ChangeDetectorRef } from '@angular/core';
 import {TokenService} from '../../services/token/token.service';
 import {BehaviorSubject} from 'rxjs';
 import {CartResponse} from '../../model/cart/CartResponse';
+import {Reviews} from '../../model/reviews';
+import {ReviewsResponse} from '../../model/reviewsResponse';
+import {WishlistService} from '../../services/wishlist/wishlist.service';
 
 @Component({
   selector: 'app-detail-product',
@@ -34,7 +37,7 @@ export class DetailProductComponent implements OnInit {
   productImagesList? : ProductImage[];
   dataSkus? : SelectedSku;
   dataImg?: SelectedImage;
- quantity: number =1;
+  quantity: number =1;
   originalPrice : number | undefined = 0;
   salePrice : number | undefined = 0;
   skuId : number | undefined = undefined;
@@ -50,12 +53,23 @@ export class DetailProductComponent implements OnInit {
   localStorage?: Storage;
   userId : number = 0;
 
+  listReviewsResponse?: ReviewsResponse
+  listReviews: Reviews[] = []
+  descriptionList: string[] = [];
+  // averageRating: number = 0;
+  totalPages: number = 0 ;
+  page: number = 0;
+  size: number = 5;
+  currentPage: number = 0;
+  pageSize: number = 3;
+
   constructor(private detailProductService: DetailProductService,
               private cartService: CartService,
               private cdRef: ChangeDetectorRef,
               private router: ActivatedRoute,
               private route: Router,
               private tokenService: TokenService,
+              private wishlistService: WishlistService
               ) {
   }
 
@@ -70,6 +84,9 @@ export class DetailProductComponent implements OnInit {
       this.setActiveColor(0,this.colorId)
       this.originalPrice = this.dataSkus?.originalPrice
       this.salePrice =  this.dataSkus?.salePrice
+      this.loadReviews(this.productId);
+
+      // this.loadDetailProduct();
 
     });
   }
@@ -86,8 +103,8 @@ export class DetailProductComponent implements OnInit {
     }
 
     const cartDTO = {
-      skuId: this.skuId, // Sử dụng đúng SKU đã chọn
-      quantity: this.quantity
+      skuId: skuId, // Sử dụng SKU từ tham số truyền vào
+      quantity: activeQty // Truyền đúng số lượng từ activeQty
     };
 
     if (this.userId === 0) {
@@ -116,8 +133,38 @@ export class DetailProductComponent implements OnInit {
         }
       );
     }
+    window.location.reload();
   }
 
+
+  addToWishlist(userId: number, skuId: number | undefined){
+
+    const wishlistDTO ={skuId:skuId};
+    //@ts-ignore
+    // confirm("userId: "+userId +"skuId: "+cartDTO.skuId+ "quantity: "+cartDTO.quantity)
+    this.wishlistService.addToWishlist(userId, wishlistDTO).subscribe(
+      () => {
+        this.message = "Thêm wishlist Thành Công"
+        this.showSuccessMessage = true;
+
+        setTimeout(() => {
+          this.getTotalItems(userId)
+          this.showSuccessMessage = false;
+        }, 1000);
+
+
+      },(error: any) => {
+        this.message = "Thêm wishlist Thất Bại "
+        this.showSuccessMessage = true;
+        // this.cdr.detectChanges();
+        setTimeout(() => {
+          this.getTotalItems(userId)
+          this.showSuccessMessage = false;
+        }, 1000);
+        console.log(error,"Thêm thất bại.");
+      }
+    )
+  }
 
 
 // Thêm sản phẩm vào localStorage (cho khách hàng không đăng nhập)
@@ -367,32 +414,51 @@ export class DetailProductComponent implements OnInit {
     }
   }
 
-  addToWishlist(userId: number, skuId: number | undefined){
-
-    const wishlistDTO ={skuId:skuId};
-    //@ts-ignore
-    // confirm("userId: "+userId +"skuId: "+cartDTO.skuId+ "quantity: "+cartDTO.quantity)
-    this.wishlistService.addToWishlist(userId, wishlistDTO).subscribe(
-      () => {
-        this.message = "Thêm wishlist Thành Công"
-        this.showSuccessMessage = true;
-
-        setTimeout(() => {
-          this.getTotalItems(userId)
-          this.showSuccessMessage = false;
-        }, 1000);
 
 
-      },(error: any) => {
-        this.message = "Thêm wishlist Thất Bại "
-        this.showSuccessMessage = true;
-        // this.cdr.detectChanges();
-        setTimeout(() => {
-          this.getTotalItems(userId)
-          this.showSuccessMessage = false;
-        }, 1000);
-        console.log(error,"Thêm thất bại.");
-      }
-    )
+  nextPage(): void {
+    if (this.currentPage < this.totalPages - 1) {
+      this.currentPage++;
+      this.loadReviews(this.productId, this.currentPage);  // Pass the currentPage to load reviews
+    }
   }
+
+  prevPage(): void {
+    if (this.currentPage > 0) {
+      this.currentPage--;
+      this.loadReviews(this.productId, this.currentPage);  // Pass the currentPage to load reviews
+    }
+  }
+
+  loadReviews(productId: number | undefined, page: number = 0): void {
+    this.detailProductService.getReviews(productId, page, this.size).subscribe(
+      (dataReviewResponse: ReviewsResponse) => {
+        console.log("Dữ liệu trả về từ API:", dataReviewResponse);
+        this.listReviewsResponse = dataReviewResponse;
+        this.listReviews = dataReviewResponse.reviews;
+        this.totalPages = dataReviewResponse.totalPages;
+        //@ts-ignore
+        this.descriptionList = this.detailProductList.description
+          .split('-')
+          .map(item => item.trim())
+          .filter(item => item.length > 0);
+      },
+      (error) => {
+        console.error("Có lỗi khi lấy dữ liệu: ", error);
+      }
+    );
+  }
+
+  changePage(page: number): void {
+    if (this.page !== page) {
+      this.page = page;
+
+      this.loadReviews(this.productId, page);  // Make sure to pass the correct page number
+    }
+  }
+
+  get totalPagesArray(): number[] {
+    return Array.from({ length: this.totalPages || 0 }, (_, i) => i + 1);
+  }
+
 }

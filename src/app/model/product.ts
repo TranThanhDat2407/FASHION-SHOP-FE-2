@@ -9,6 +9,8 @@ export interface Product {
   name: string;
   skus: SKU[];
   productImages: ProductImage[];
+  avgRating: number,
+  countReviews: number,
   create_at: string; // Dạng ISO Date
   update_at: string;
 }

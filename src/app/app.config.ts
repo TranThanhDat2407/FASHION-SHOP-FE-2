@@ -10,6 +10,8 @@ import { importProvidersFrom } from '@angular/core';
 import {adminRoutes} from './components/admin/admin-routes';
 import { provideTranslateService, TranslateLoader} from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+// import { adminRoutes } from './components/admin/admin-routes';
+
 const tokenInterceptorProvider: Provider = {
   provide: HTTP_INTERCEPTORS,
   useClass: TokenInterceptor,
@@ -23,7 +25,6 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom(RouterModule.forChild(adminRoutes)),
     provideClientHydration(),
     provideHttpClient(withFetch(), withInterceptorsFromDi()),
-    tokenInterceptorProvider,
     provideTranslateService({
       loader: {
         provide: TranslateLoader,
@@ -32,5 +33,6 @@ export const appConfig: ApplicationConfig = {
         deps: [HttpClient],
       },
     }),
+    tokenInterceptorProvider,
   ]
 };

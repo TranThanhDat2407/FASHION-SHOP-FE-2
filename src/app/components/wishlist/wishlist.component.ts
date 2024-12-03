@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {CurrencyPipe, NgForOf} from '@angular/common';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterLink} from '@angular/router';
 import {WishlistResponse} from '../../model/wishlist/WishlistResponse';
 import {CartItem} from '../../model/cart/CartItem';
@@ -16,7 +16,8 @@ import {TokenService} from '../../services/token/token.service';
     CurrencyPipe,
     NgForOf,
     ReactiveFormsModule,
-    RouterLink
+    RouterLink,
+    FormsModule
   ],
   templateUrl: './wishlist.component.html',
   styleUrl: './wishlist.component.scss'

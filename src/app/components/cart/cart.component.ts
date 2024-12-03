@@ -10,11 +10,12 @@ import { HttpClient } from '@angular/common/http';
 import { ChangeDetectorRef } from '@angular/core';
 import { CartItemResponse } from '../../responses/cart/cart.response';
 import {OrderDetail} from '../../model/order/OrderDetail';
+import {TranslatePipe} from "@ngx-translate/core";
 
 @Component({
   selector: 'app-cart',
   standalone: true,
-  imports: [RouterLink, CommonModule, FormsModule],
+    imports: [RouterLink, CommonModule, FormsModule, TranslatePipe],
   templateUrl: './cart.component.html',
   styleUrls: ['./cart.component.scss']
 })
@@ -137,7 +138,7 @@ export class CartComponent implements OnInit {
       if (!this.userID) {
         this.removeItemFromLocalStorage(cartItem.skuResponse.id);
       } else {
-        this.removeItem(cartItem.skuResponse.id); // Xóa qua API
+        this.removeItem(cartItem.id); // Xóa qua API
       }
     }
   }
@@ -155,7 +156,8 @@ export class CartComponent implements OnInit {
     }
   }
 
-  removeItem(cartId?: number, cartItem?: CartItemResponse) {
+  removeItem(cartId?: number | null, cartItem?: CartItemResponse) {
+
     if (this.userID && cartId) {
       // Xóa qua API nếu đã đăng nhập
       this.cartService.removeItem(cartId).subscribe({
@@ -170,6 +172,7 @@ export class CartComponent implements OnInit {
       // Xóa trong localStorage nếu không đăng nhập
       this.removeItemFromLocalStorage(cartItem.skuResponse.id);
     }
+    window.location.reload();
   }
   removeItemFromLocalStorage(skuId: number | undefined): void {
     const guestCart = this.cartService.getCartFromLocalStorage();

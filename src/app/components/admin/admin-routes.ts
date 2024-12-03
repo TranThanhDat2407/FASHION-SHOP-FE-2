@@ -6,6 +6,9 @@ import { NgModule } from "@angular/core";
 import { RouterModule } from "@angular/router";
 import {ProductPageComponent} from './product-page/product-page.component';
 import {AddProductComponent} from './add-product/add-product.component';
+import {QrScannerComponentComponent} from './qr-scanner-component/qr-scanner-component.component';
+import {QrOrderComponent} from './qr-order/qr-order.component';
+import {OrderlistComponent} from './orderlist/orderlist.component';
 
 export const adminRoutes: Routes = [
     {
@@ -25,6 +28,39 @@ export const adminRoutes: Routes = [
                 path: 'edit/:productId/:skuId',
                 component: AddProductComponent
             },
+          {
+            path: 'QRScanner',
+            component: QrScannerComponentComponent
+          },
+          {
+            path: 'qr-order',
+            component: QrOrderComponent
+          },
+          {
+            path: 'order-list',
+            component: OrderlistComponent
+          },
+            // {
+            //     path: 'products/update/:id',
+            //     component: UpdateProductAdminComponent
+            // },
+            // {
+            //     path: 'products/insert',
+            //     component: InsertProductAdminComponent
+            // },
+            // //categories
+            // {
+            //     path: 'categories/update/:id',
+            //     component: UpdateCategoryAdminComponent
+            // },
+            // {
+            //     path: 'categories/insert',
+            //     component: InsertCategoryAdminComponent
+            // },
+            // {
+            //     path: 'users',
+            //     component: UserAdminComponent
+            // },
         ]
     }
 ];

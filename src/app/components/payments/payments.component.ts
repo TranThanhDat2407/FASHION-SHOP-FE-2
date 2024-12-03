@@ -98,12 +98,15 @@ export class PaymentsComponent implements OnInit {
 
   updateDeliveryFee(): void {
     // So sánh đúng với giá trị chuỗi "1" và "2"
+
     if (this.selectedDeliveryMethod === "1") {
       this.deliveryFee = 20000; // Phí  "Giao hàng nhanh"
       console.log("selectedDeliveryMethod: " + this.deliveryFee);
     } else if (this.selectedDeliveryMethod === "2") {
-
       this.deliveryFee = 50000; // Phí "Giao hàng hỏa tốc"
+      console.log("selectedDeliveryMethod: " + this.deliveryFee);
+    }else if (this.selectedDeliveryMethod === "3") {
+      this.deliveryFee = 0;
       console.log("selectedDeliveryMethod: " + this.deliveryFee);
     }
 
@@ -134,7 +137,7 @@ export class PaymentsComponent implements OnInit {
       QR_code: '',
       is_active: true,
       payment_method: this.selectPaymentMethod,
-      shipping_method: this.indexPayment === 1 ? "Thanh toán khi nhận hàng ": "VNPAY",
+      shipping_method: this.selectedDeliveryMethod,
       orderDetail: this.orderDetail,
     };
 

@@ -1,6 +1,28 @@
 {
-  "ANALYTICS": "Analytics",
-  "SETTING": "Setting",
-  "PROFILES": "Profiles",
-  "LOGOUT": "Log out"
+  "LOGIN": {
+    "TITLE": "LOGIN",
+    "EMAIL_LABEL": "EMAIL ADDRESS",
+    "PASSWORD_LABEL": "PASSWORD",
+    "LOGIN_BUTTON": "LOGIN",
+    "FORGOT_PASSWORD": "Forgot password?",
+    "SHOW_PASSWORD": "Show password",
+    "LOGIN_WITH_GOOGLE": "Login with google"
+  },
+  "SIGNUP": {
+    "TITLE": "CREATE AN ACCOUNT",
+    "DESCRIPTION": "Create an account now! Access exclusive services.",
+    "CREATE_ACCOUNT_BUTTON": "REGISTER A NEW ACCOUNT"
+  },
+  "LOGIN": "Login",
+  "SIGNUP": "Sign Up",
+  "PROFILE": "Profile",
+  "LOGOUT": "Logout",
+  "LANG": "ENGLISH",
+  "HOME_DESCRIPTION": "Explore our amazing collection of products.",
+  "CART": "CART",
+  "TOTAL_PRICE": "TOTAL PRICE",
+  "TOTAL_QUANTITY": "TOTAL QUANTITY",
+  "TOTAL_BILL": "TOTAL BILL",
+  "BUY_NOW": "BUY NOW",
+  "CONTINUE_SHOPPING": "CONTINUE SHOPPING"
 }
