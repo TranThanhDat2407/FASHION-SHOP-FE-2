@@ -18,6 +18,7 @@ import { ChangeDetectorRef } from '@angular/core';
 import {TokenService} from '../../services/token/token.service';
 import {BehaviorSubject} from 'rxjs';
 import {CartResponse} from '../../model/cart/CartResponse';
+import {WishlistService} from '../../services/wishlist/wishlist.service';
 
 @Component({
   selector: 'app-detail-product',
@@ -34,7 +35,7 @@ export class DetailProductComponent implements OnInit {
   productImagesList? : ProductImage[];
   dataSkus? : SelectedSku;
   dataImg?: SelectedImage;
- quantity: number =1;
+  quantity: number =1;
   originalPrice : number | undefined = 0;
   salePrice : number | undefined = 0;
   skuId : number | undefined = undefined;
@@ -56,6 +57,7 @@ export class DetailProductComponent implements OnInit {
               private router: ActivatedRoute,
               private route: Router,
               private tokenService: TokenService,
+              private wishlistService: WishlistService
               ) {
   }
 
@@ -118,6 +120,35 @@ export class DetailProductComponent implements OnInit {
     }
   }
 
+
+  addToWishlist(userId: number, skuId: number | undefined){
+
+    const wishlistDTO ={skuId:skuId};
+    //@ts-ignore
+    // confirm("userId: "+userId +"skuId: "+cartDTO.skuId+ "quantity: "+cartDTO.quantity)
+    this.wishlistService.addToWishlist(userId, wishlistDTO).subscribe(
+      () => {
+        this.message = "Thêm wishlist Thành Công"
+        this.showSuccessMessage = true;
+
+        setTimeout(() => {
+          this.getTotalItems(userId)
+          this.showSuccessMessage = false;
+        }, 1000);
+
+
+      },(error: any) => {
+        this.message = "Thêm wishlist Thất Bại "
+        this.showSuccessMessage = true;
+        // this.cdr.detectChanges();
+        setTimeout(() => {
+          this.getTotalItems(userId)
+          this.showSuccessMessage = false;
+        }, 1000);
+        console.log(error,"Thêm thất bại.");
+      }
+    )
+  }
 
 
 // Thêm sản phẩm vào localStorage (cho khách hàng không đăng nhập)
@@ -367,32 +398,4 @@ export class DetailProductComponent implements OnInit {
     }
   }
 
-  addToWishlist(userId: number, skuId: number | undefined){
-
-    const wishlistDTO ={skuId:skuId};
-    //@ts-ignore
-    // confirm("userId: "+userId +"skuId: "+cartDTO.skuId+ "quantity: "+cartDTO.quantity)
-    this.wishlistService.addToWishlist(userId, wishlistDTO).subscribe(
-      () => {
-        this.message = "Thêm wishlist Thành Công"
-        this.showSuccessMessage = true;
-
-        setTimeout(() => {
-          this.getTotalItems(userId)
-          this.showSuccessMessage = false;
-        }, 1000);
-
-
-      },(error: any) => {
-        this.message = "Thêm wishlist Thất Bại "
-        this.showSuccessMessage = true;
-        // this.cdr.detectChanges();
-        setTimeout(() => {
-          this.getTotalItems(userId)
-          this.showSuccessMessage = false;
-        }, 1000);
-        console.log(error,"Thêm thất bại.");
-      }
-    )
-  }
 }
