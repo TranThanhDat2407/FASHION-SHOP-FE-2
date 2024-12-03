@@ -86,6 +86,8 @@ export class AddProductComponent implements OnInit {
       (data: Category[]) => {
         this.categories = data;
         console.log(data)
+        this.findCategoryByIdToShow(3);
+
       },
       (error) => {
         console.error('Error fetching categories:', error);
@@ -133,6 +135,10 @@ export class AddProductComponent implements OnInit {
           // Cập nhật kích thước đã chọn
           this.selectedSize = this.sizes.find(size => size.id === sku.size.id) || this.selectedSize;
 
+
+
+
+
           // Cập nhật thông tin SKU vào sku hiện tại
           this.sku = sku;
         }
@@ -144,6 +150,23 @@ export class AddProductComponent implements OnInit {
     }
 
 
+  }
+  findCategoryByIdToShow(categoryId: number): void {
+    // Tìm category có id = categoryId (ví dụ: 3)
+    const category = this.categories.find(cat => cat.id === categoryId);
+
+    if (category) {
+      // Nếu tìm thấy category, ta log thông tin category và subCategories
+      console.log("Found category:", category);
+      console.log("Subcategories of this category:", category.subCategories);
+
+      // Cập nhật selectedCategory và selectedSubCategories
+      this.selectedCategory = category.id; // Gán id của category đã chọn
+      this.selectedSubCategories = category.subCategories || []; // Gán danh sách subcategories
+    } else {
+      // Nếu không tìm thấy category với id = 3
+      console.log("Category with id", categoryId, "not found.");
+    }
   }
 
 
@@ -284,25 +307,37 @@ export class AddProductComponent implements OnInit {
     };
     console.log('Prepared Product Data:', productData);
     if (this.isCreateMode) {
-      this.productService.addProduct(productData).subscribe(
-        (response) => {
+      this.productService.addProduct(productData).subscribe({
+        next: (response) => {
           console.log('Product created successfully:', response);
-
-          this.message = "Sản phẩm đã được thêm thành công!"
+          // Hiển thị thông báo thành công
+          this.message = "Sản phẩm đã được thêm thành công!";
           this.showSuccessMessage = true;
+          // Ẩn thông báo sau 3 giây
           setTimeout(() => {
             this.showSuccessMessage = false;
-          }, 1000);
+          }, 3000);
         },
-        (error) => {
+        error: (error) => {
           console.error('Error creating product:', error);
-          this.message = "Đã xảy ra lỗi khi thêm sản phẩm."
+
+          // Xác định lỗi chi tiết nếu có
+          let errorMessage = "Đã xảy ra lỗi khi thêm sản phẩm.";
+          if (error.error && error.error.message) {
+            errorMessage = error.error.message;
+          }
+
+          // Hiển thị thông báo lỗi
+          this.message = errorMessage;
           this.showSuccessMessage = true;
+
+          // Ẩn thông báo sau 3 giây
           setTimeout(() => {
             this.showSuccessMessage = false;
-          }, 1000);
-        }
-      );
+          }, 3000);
+        },
+      });
+
     }
     else {
       console.log('Product to update:', productData);

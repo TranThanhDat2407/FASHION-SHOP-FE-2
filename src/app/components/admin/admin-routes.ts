@@ -25,27 +25,6 @@ export const adminRoutes: Routes = [
                 path: 'edit/:productId/:skuId',
                 component: AddProductComponent
             },
-            // {
-            //     path: 'products/update/:id',
-            //     component: UpdateProductAdminComponent
-            // },
-            // {
-            //     path: 'products/insert',
-            //     component: InsertProductAdminComponent
-            // },
-            // //categories
-            // {
-            //     path: 'categories/update/:id',
-            //     component: UpdateCategoryAdminComponent
-            // },
-            // {
-            //     path: 'categories/insert',
-            //     component: InsertCategoryAdminComponent
-            // },
-            // {
-            //     path: 'users',
-            //     component: UserAdminComponent
-            // },
         ]
     }
 ];

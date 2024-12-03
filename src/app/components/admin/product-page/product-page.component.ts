@@ -122,8 +122,11 @@ export class ProductPageComponent implements OnInit {
 
   viewDetails(productId: number, skuId: number) {
     // Điều hướng sang trang chi tiết sản phẩm
-    this.router.navigate(['/edit', productId, skuId]).then(() => {
+    this.router.navigate(['/admin/edit', productId, skuId]).then(() => {
       console.log(productId,skuId);
+
+
+
 
       // Gọi API để lấy thông tin SKU sau khi điều hướng thành công
       // this.http.get(`/api/skudetails/${skuId}`).subscribe(

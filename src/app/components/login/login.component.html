@@ -33,9 +33,10 @@
                                        id="email"
                                        #emailCtrl="ngModel"
                                        required
-                                       pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+
                                 />
 
+                              <!--                                       pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"-->
                               <div *ngIf="emailCtrl.touched && emailCtrl.invalid" class="error mt-2">
                                 <div *ngIf="emailCtrl.errors?.['required']"
                                      class="text-danger">Vui lòng nhập email.</div>

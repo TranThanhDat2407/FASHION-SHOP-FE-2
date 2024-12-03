@@ -2,7 +2,7 @@
   <app-header *ngIf="!isAdminPage"></app-header>
 </div>
 
-<div style="height: 100px">
+<div style="height: 100px" *ngIf="!isAdminPage">
 </div>
 <div>
   <router-outlet></router-outlet>
