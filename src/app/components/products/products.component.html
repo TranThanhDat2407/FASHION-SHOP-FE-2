@@ -144,7 +144,10 @@
               </div>
             </div>
             <div class="col-12 product-name">
-              <span>{{product.name}}</span>
+              <span>{{product.name}}</span><br>
+
+              <span style="font-size: 14px;"><i class="fa-solid fa-star" style="font-size: 11px;"></i>{{product.avgRating | number: '1.1-1'}}</span>
+              (<span style="font-size: 12px;">{{product.countReviews}}</span>)
             </div>
           </div>
         </div>

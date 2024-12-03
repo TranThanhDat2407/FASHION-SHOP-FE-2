@@ -83,18 +83,18 @@
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                   <!-- Hiển thị khi người dùng chưa đăng nhập -->
                   <li class="nav-item" *ngIf="!isLoggedIn">
-                    <a class="dropdown-item" routerLink="/login">Đăng Nhập</a>
+                    <a class="dropdown-item" routerLink="/login">{{ 'LOGIN' | translate }}</a>
                   </li>
                   <li class="nav-item" *ngIf="!isLoggedIn">
-                    <a class="dropdown-item" routerLink="/signin">Đăng Ký</a>
+                    <a class="dropdown-item" routerLink="/signin">{{ 'SIGNUP' | translate }}</a>
                   </li>
 
                   <!-- Hiển thị khi người dùng đã đăng nhập -->
                   <li class="nav-item" *ngIf="isLoggedIn">
-                    <a class="dropdown-item" routerLink="/profile">Hồ Sơ</a>
+                    <a class="dropdown-item" routerLink="/profile">{{ 'LOGOUT' | translate }}</a>
                   </li>
                   <li class="nav-item" *ngIf="isLoggedIn">
-                    <a class="dropdown-item" href="#" (click)="logout()">Đăng Xuất</a>
+                    <a class="dropdown-item" href="#" (click)="logout()">{{ 'PROFILE' | translate }}</a>
                   </li>
                 </ul>
               </li>
@@ -106,16 +106,33 @@
                 </li>
                 <li class="nav-item " style="padding-right: 90px;">
                     <a class="nav-link tabs position-relative" routerLink="/cart">
-                       <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                       <span *ngIf="totalItems > 0" class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                         {{totalItems}}
                         </span>
-
                       <i class="fa-solid fa-cart-shopping"></i></a>
                 </li>
 
                 <!-- Các mục khác... -->
 
+              <li class="nav-item dropdown">
+                <a
+                  class="nav-link dropdown-toggle tabs"
+                  href="#"
+                  id="languageDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false"
+                >
+                  {{ 'LANG' | translate }}
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" (click)="changeLanguage('en')">English</a></li>
+                  <li><a class="dropdown-item" (click)="changeLanguage('vi')">Tiếng Việt</a></li>
+                  <li><a class="dropdown-item" (click)="changeLanguage('es')">Español</a></li>
+                </ul>
+              </li>
             </ul>
+
         </div>
     </div>
 </nav>

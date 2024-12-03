@@ -12,5 +12,17 @@
     "TITLE": "CREATE AN ACCOUNT",
     "DESCRIPTION": "Create an account now! Access exclusive services.",
     "CREATE_ACCOUNT_BUTTON": "REGISTER A NEW ACCOUNT"
-  }
+  },
+  "LOGIN": "Login",
+  "SIGNUP": "Sign Up",
+  "PROFILE": "Profile",
+  "LOGOUT": "Logout",
+  "LANG": "ENGLISH",
+  "HOME_DESCRIPTION": "Explore our amazing collection of products.",
+  "CART": "CART",
+  "TOTAL_PRICE": "TOTAL PRICE",
+  "TOTAL_QUANTITY": "TOTAL QUANTITY",
+  "TOTAL_BILL": "TOTAL BILL",
+  "BUY_NOW": "BUY NOW",
+  "CONTINUE_SHOPPING": "CONTINUE SHOPPING"
 }

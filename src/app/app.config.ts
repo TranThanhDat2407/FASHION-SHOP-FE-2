@@ -25,6 +25,14 @@ export const appConfig: ApplicationConfig = {
     importProvidersFrom(RouterModule.forChild(adminRoutes)),
     provideClientHydration(),
     provideHttpClient(withFetch(), withInterceptorsFromDi()),
+    provideTranslateService({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: (http: HttpClient) =>
+          new TranslateHttpLoader(http, './assets/i18n/', '.json'),
+        deps: [HttpClient],
+      },
+    }),
     tokenInterceptorProvider,
     provideTranslateService({
       loader: {
