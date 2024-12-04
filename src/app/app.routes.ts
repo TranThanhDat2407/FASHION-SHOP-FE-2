@@ -35,6 +35,8 @@ export const routes: Routes = [
   { path: 'addresses_list', component: AddressListComponent, canActivate: [AuthGuardFn] },
   { path: 'edit-profile', component: EditProfileComponent, canActivate: [AuthGuardFn] },
   { path: 'order/:orderId', component: OrderDetailsComponent, canActivate: [AuthGuardFn] },
+  { path: 'order/:orderId', component: OrderDetailsComponent },
+
 //admin
   {
     path: 'admin',

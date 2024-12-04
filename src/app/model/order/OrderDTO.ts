@@ -10,5 +10,6 @@ export interface OrderDTO {
   is_active: boolean | null; // Có thể null
   payment_method: string;
   shipping_method: string;
+  createdAt : Date;
   orderDetails: OrderDetail[]; // Danh sách các chi tiết đơn hàng
 }
