@@ -23,10 +23,10 @@ export class ProfileComponent implements OnInit {
 
   orders: OrderDTO[] = [];
 
-
-
   userId: number = 0;
-
+  userName: string = '';
+  userPhone: string = '';
+  userEmail: string = '';
 
 
   constructor(private userService: UserService,
@@ -35,49 +35,58 @@ export class ProfileComponent implements OnInit {
               private route: ActivatedRoute,
 
 
+
   ) { }
 
   ngOnInit(): void {
-    // this.loadUserProfile(2);  // Gọi hàm tải thông tin hồ sơ người dùng
-    // const userId = 2
-    // this.loadOrderHistory(this.userId);
-    // console.log()
+
     this.userId = this.tokenService.getUserId();
-    this.orderService.getOrdersByUserId(this.userId).subscribe(
-        (data) => {
-          this.orders = data;
-          console.log(this.orders);
-        },
-        (error) => {
-          console.error('Lỗi khi tải đơn hàng:', error);
-        }
-    );
+    this.loadUserProfile(this.userId);
+
+    this.loadOrderHistory(this.userId);
   }
 
 
-  loadUserProfile(userId: 1): void {
+
+
+
+
+  loadUserProfile(userId: number): void {
     this.userService.getUserProfile().subscribe(
-        (data: User) => {
-          this.userId = 1;  // Lưu thông tin người dùng
-        },
-        error => {
-          console.error('Error loading user profile', error);
-        }
+      (data: User) => {
+        this.userName = data.name;
+        this.userPhone = data.phone;
+        this.userEmail = data.email;
+      },
+      error => {
+        console.error('Lỗi khi tải thông tin người dùng', error);
+      }
     );
   }
-
 
 
   loadOrderHistory(userId: number): void {
-    this.orderService. getOrdersByUserId(userId).subscribe({
+    this.orderService.getOrdersByUserId(userId).subscribe({
       next: (data: OrderDTO[]) => {
-        this.orders = data;
+        console.log('Dữ liệu trả về từ API:', data);
+
+
+        this.orders = data.map(order => ({
+          ...order,
+          createdAt: new Date(order.createdAt)
+        }));
+
+
+        this.orders.sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime());
+
+        console.log('Dữ liệu đơn hàng sau khi sắp xếp:', this.orders);
       },
       error: (err) => {
-        console.error('Error fetching order:', err);
+        console.error('Lỗi khi tải đơn hàng:', err);
       }
     });
-
-
   }
+
+
+
 }
