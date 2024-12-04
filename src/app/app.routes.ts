@@ -16,6 +16,8 @@ import {ProfileComponent} from './components/profile/profile.component';
 import {AddressListComponent} from './components/address-list/address-list.component';
 import {EditProfileComponent} from './components/edit-profile/edit-profile.component';
 import {OrderDetailsComponent} from './components/order-details/order-details.component';
+import {OTPComponent} from './components/OTP/OTP.component';
+import {ResetPasswordComponent} from './components/reset-password/reset-password.component';
 
 
 export const routes: Routes = [
@@ -26,7 +28,9 @@ export const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'signin', component: SigninComponent},
   {path: 'forgotPass', component: ForgotPasswordComponent},
+  {path: 'resetPassword', component: ResetPasswordComponent},
   {path: 'cart', component: CartComponent},
+  {path: 'OTP', component: OTPComponent},
   {path: 'wishlist', component: WishlistComponent, canActivate: [AuthGuardFn]},
   {path: 'payments', component: PaymentsComponent, canActivate: [AuthGuardFn]},
   {path: 'detail_product/:productId/:colorId/:sizeId', component: DetailProductComponent},

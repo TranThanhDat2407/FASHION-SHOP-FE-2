@@ -27,12 +27,11 @@ export class OTPComponent {
   }
 
   onSubmit() {
-    // Gọi API để xác nhận OTP
-
+    this.errorMessage = ''; // Reset lỗi trước khi gọi API
     this.forgotPasswordService.verifyOtp(this.email, this.otp).subscribe({
       next: (response) => {
-        console.log(response);
-        // Chuyển đến bước tiếp theo (Đổi mật khẩu)
+        console.log(response.message);
+        alert(response.message); // Hiển thị thông báo thành công
         this.router.navigate(['/resetPassword'], { queryParams: { email: this.email } });
       },
       error: (error) => {

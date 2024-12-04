@@ -157,7 +157,7 @@ export class PaymentsComponent implements OnInit {
     });
 
     console.log('Order DTO:', orderDTO);
-    // Ở đây bạn có thể gọi API để gửi orderDTO lên server
+    window.location.reload();
   }
 
 

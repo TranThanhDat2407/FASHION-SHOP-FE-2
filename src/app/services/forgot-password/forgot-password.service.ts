@@ -17,9 +17,10 @@ export class ForgotPasswordService {
     return this.http.post<any>(`${this.apiUrl}/forgot-password`, {}, { params });
   }
 
-  verifyOtp(email: string, otp: string): Observable<any> {
-    const params = new HttpParams().set('email', email).set('otp', otp);
-    return this.http.post<any>(`${this.apiUrl}/verify-otp`, {}, { params });
+  verifyOtp(email: string, otp: string): Observable<{ message: string }> {
+    return this.http.post<{ message: string }>(`${this.apiUrl}/verify-otp`, null, {
+      params: { email, otp }
+    });
   }
 
   resetPassword(email: string, newPassword: string): Observable<any> {

@@ -6,15 +6,19 @@
     "LOGIN_BUTTON": "ĐĂNG NHẬP",
     "FORGOT_PASSWORD": "Quên mật khẩu?",
     "SHOW_PASSWORD": "Hiển thị mật khẩu",
-    "LOGIN_WITH_GOOGLE": "Đăng nhập với Google"
+    "LOGIN_WITH_GOOGLE": "Đăng nhập với Google",
+    "EMAIL_REQUIRED": "Vui lòng nhập email.",
+    "EMAIL_PATTERN": "Vui lòng nhập một địa chỉ email hợp lệ.",
+    "PASSWORD_REQUIRED": "Vui lòng nhập mật khẩu.",
+    "PASSWORD_PATTERN": "Mật khẩu phải có ít nhất 6 ký tự, bao gồm 1 chữ cái in hoa và 1 chữ số."
   },
   "SIGNUP": {
     "TITLE": "TẠO MỘT TÀI KHOẢN",
     "DESCRIPTION": "Hãy tạo tài khoản ngay! Bạn có thể nhận được các dịch vụ đặc biệt.",
     "CREATE_ACCOUNT_BUTTON": "ĐĂNG KÝ TÀI KHOẢN MỚI"
   },
-  "LOGIN": "Đăng Nhập",
-  "SIGNUP": "Đăng Ký",
+  "LOGIN1": "Đăng Nhập",
+  "SIGNUP1": "Đăng Ký",
   "PROFILE": "Hồ Sơ",
   "LOGOUT": "Đăng Xuất",
   "LANG": "Tiếng Việt",

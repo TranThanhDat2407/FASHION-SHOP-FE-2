@@ -83,18 +83,18 @@
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                   <!-- Hiển thị khi người dùng chưa đăng nhập -->
                   <li class="nav-item" *ngIf="!isLoggedIn">
-                    <a class="dropdown-item" routerLink="/login">{{ 'LOGIN' | translate }}</a>
+                    <a class="dropdown-item" routerLink="/login">{{ 'LOGIN1' | translate }}</a>
                   </li>
                   <li class="nav-item" *ngIf="!isLoggedIn">
-                    <a class="dropdown-item" routerLink="/signin">{{ 'SIGNUP' | translate }}</a>
+                    <a class="dropdown-item" routerLink="/signin">{{ 'SIGNUP1' | translate }}</a>
                   </li>
 
                   <!-- Hiển thị khi người dùng đã đăng nhập -->
                   <li class="nav-item" *ngIf="isLoggedIn">
-                    <a class="dropdown-item" routerLink="/profile">{{ 'LOGOUT' | translate }}</a>
+                    <a class="dropdown-item" routerLink="/profile">{{ 'PROFILE' | translate }}</a>
                   </li>
                   <li class="nav-item" *ngIf="isLoggedIn">
-                    <a class="dropdown-item" href="#" (click)="logout()">{{ 'PROFILE' | translate }}</a>
+                    <a class="dropdown-item" href="#" (click)="logout()">{{ 'LOGOUT' | translate }}</a>
                   </li>
                 </ul>
               </li>

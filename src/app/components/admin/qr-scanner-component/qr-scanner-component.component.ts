@@ -2,14 +2,15 @@ import { Component } from '@angular/core';
 import { Result } from '@zxing/library'; // Correct import for Result
 import {ZXingScannerComponent, ZXingScannerModule} from '@zxing/ngx-scanner';
 import {NgIf} from '@angular/common';
-import {Router} from '@angular/router';
+import {Router, RouterLink} from '@angular/router';
 
 @Component({
   selector: 'app-qr-scanner-component',
   standalone: true,
   imports: [
     ZXingScannerModule,
-    NgIf
+    NgIf,
+    RouterLink
   ],
   templateUrl: './qr-scanner-component.component.html',
   styleUrl: './qr-scanner-component.component.scss'

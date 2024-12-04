@@ -350,7 +350,7 @@
                         <p>Cảm ơn bạn đã đặt hàng tại cửa hàng của chúng tôi. Đây là thông tin đơn hàng của bạn:</p>
                         <p><b>Đơn hàng ID: </b>{{ orderOK.orderId }}</p>
                         <p><b>Địa chỉ giao hàng: </b>{{ orderOK.shipping_address }}</p>
-                        <p><b>Tổng tiền: </b>{{ orderOK.total_money | currency }}</p>
+                        <p><b>Tổng tiền: </b>{{ orderOK.total_money | currency:'VND':'' }}</p>
                         <p>Chúc bạn một ngày tốt lành!</p>
                         <button (click)="closeModal()">Đóng</button>
                       </div>

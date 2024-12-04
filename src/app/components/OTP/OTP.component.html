@@ -40,8 +40,11 @@
                               <div *ngIf="otpCtrl.touched && otpCtrl.invalid" class="error mt-2">
                                 <div *ngIf="otpCtrl.errors?.['required']" class="text-danger">Vui lòng nhập OTP.</div>
                                 <div *ngIf="otpCtrl.errors?.['pattern']" class="text-danger">OTP phải là 6 chữ số.</div>
-                              </div>
 
+                              </div>
+                              <div *ngIf="errorMessage" class="error-message mt-2">
+                                <div class="text-danger"> < {{ errorMessage }}</div>
+                              </div>
                             </div>
 
                             <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 mb-4">
